@@ -81,6 +81,7 @@ type Properties struct {
 	Photo             Photo
 	FoodGroup         FoodGroup
 }
+
 type PlusOne struct {
 	Id     string
 	Name   string
