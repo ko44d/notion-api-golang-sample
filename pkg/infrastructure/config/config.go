@@ -6,11 +6,14 @@ import (
 )
 
 type Config struct {
-	NotionAPIKey string
-	NotionPageId string
+	NotionAPIProtocol string
+	NotionAPIHost     string
+	NotionAPIKey      string
+	NotionPageId      string
 }
 
 func GetFromEnv() (Config, error) {
+
 	nak := os.Getenv("NOTION_API_KEY")
 	if nak == "" {
 		return Config{}, errors.New("NOTION_API_KEY is empty.")
@@ -22,7 +25,9 @@ func GetFromEnv() (Config, error) {
 	}
 
 	return Config{
-		NotionAPIKey: nak,
-		NotionPageId: npi,
+		NotionAPIProtocol: "https",
+		NotionAPIHost:     "api.notion.com",
+		NotionAPIKey:      nak,
+		NotionPageId:      npi,
 	}, nil
 }
