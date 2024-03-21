@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"ko44d/notion-api-golang-sample/pkg"
+)
 
 func main() {
-	fmt.Println("Hello, World!")
+	di := pkg.DI{}
+	panic(di.Init().Run(fmt.Sprintf(":%s", "8080")))
 }
