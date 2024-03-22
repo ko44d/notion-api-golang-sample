@@ -4,6 +4,7 @@ type DatabaseResponse struct {
 	Object         string        `json:"object"`
 	Id             string        `json:"id"`
 	CreatedTime    string        `json:"created_time"`
+	CreatedBy      CreatedBy     `json:"created_by"`
 	LastEditedTime string        `json:"last_edited_time"`
 	Icon           Icon          `json:"icon"`
 	Cover          Cover         `json:"cover"`
@@ -17,6 +18,10 @@ type DatabaseResponse struct {
 	PublicUrl      string        `json:"public_url"`
 }
 
+type CreatedBy struct {
+	Object string `json:"object"`
+	Id     string `json:"id"`
+}
 type Icon struct {
 	Type  string `json:"type"`
 	Emoji string `json:"emoji"`
@@ -72,6 +77,7 @@ type Properties struct {
 	StoreAvailability StoreAvailability `json:"store_availability"`
 	Photo             Photo             `json:"photo"`
 	FoodGroup         FoodGroup         `json:"food_group"`
+	Name              Name              `json:"name"`
 }
 
 type PlusOne struct {
@@ -172,7 +178,14 @@ type Select struct {
 	Color string `json:"color"`
 }
 
+type Name struct {
+	Id    string      `json:"id"`
+	Name  string      `json:"name"`
+	Type  string      `json:"type"`
+	Title interface{} `json:"title"`
+}
+
 type Parent struct {
 	Type   string `json:"type"`
-	PageId string `json:"pageId"`
+	PageId string `json:"page_id"`
 }

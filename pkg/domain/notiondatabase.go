@@ -3,6 +3,7 @@ package domain
 import (
 	"ko44d/notion-api-golang-sample/pkg/infrastructure/config"
 	"ko44d/notion-api-golang-sample/pkg/infrastructure/database"
+	"log"
 )
 
 type NotionDatabase interface {
@@ -20,5 +21,12 @@ func NewNotionDatabase(notionapi database.NotionAPI, config config.Config) Notio
 
 func (nd notionDatabase) GetDatabase() interface{} {
 	param := database.NewDatabaseParam(nd.config.NotionPageId)
-	return nd.notionapi.GetDatabase(param)
+
+	getDatabase, err := nd.notionapi.GetDatabase(param)
+	if err != nil {
+		log.Printf("%v", err)
+		return nil
+	}
+
+	return getDatabase
 }
