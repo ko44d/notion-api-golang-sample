@@ -10,6 +10,7 @@ type Config struct {
 	NotionAPIHost     string
 	NotionAPIKey      string
 	NotionPageId      string
+	NotionVersion     string
 }
 
 func GetFromEnv() (Config, error) {
@@ -29,5 +30,6 @@ func GetFromEnv() (Config, error) {
 		NotionAPIHost:     "api.notion.com",
 		NotionAPIKey:      nak,
 		NotionPageId:      npi,
+		NotionVersion:     "2022-06-28",
 	}, nil
 }
