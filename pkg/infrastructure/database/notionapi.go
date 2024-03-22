@@ -1,18 +1,20 @@
 package database
 
 import (
-	"ko44d/notion-api-golang-sample/pkg/domain"
 	"ko44d/notion-api-golang-sample/pkg/infrastructure/config"
 )
 
-type notionApiDatabase struct {
+type NotionAPI interface {
+	GetDatabase(param *DatabaseParam) DatabaseResponse
+}
+type notionApi struct {
 	config config.Config
 }
 
-func NewNotionAPIDatabase(config config.Config) domain.Database {
-	return &notionApiDatabase{config: config}
+func NewNotionAPI(config config.Config) NotionAPI {
+	return &notionApi{config: config}
 }
 
-func (na notionApiDatabase) GetDatabase(param DatabaseParam) DatabaseResponse {
+func (na notionApi) GetDatabase(param *DatabaseParam) DatabaseResponse {
 	return DatabaseResponse{}
 }
