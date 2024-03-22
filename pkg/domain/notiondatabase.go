@@ -7,7 +7,8 @@ import (
 )
 
 type NotionDatabase interface {
-	GetDatabase() interface{}
+	GetDatabaseInfo() interface{}
+	GetData() interface{}
 }
 
 type notionDatabase struct {
@@ -19,14 +20,26 @@ func NewNotionDatabase(notionapi database.NotionAPI, config config.Config) Notio
 	return &notionDatabase{notionapi: notionapi, config: config}
 }
 
-func (nd notionDatabase) GetDatabase() interface{} {
+func (nd notionDatabase) GetDatabaseInfo() interface{} {
 	param := database.NewDatabaseParam(nd.config.NotionPageId)
 
-	getDatabase, err := nd.notionapi.GetDatabase(param)
+	getDatabase, err := nd.notionapi.RetrieveADatabase(param)
 	if err != nil {
 		log.Printf("%v", err)
 		return nil
 	}
 
 	return getDatabase
+}
+
+func (nd notionDatabase) GetData() interface{} {
+	param := database.NewDatabaseParam(nd.config.NotionPageId)
+
+	qad, err := nd.notionapi.QueryADatabase(param)
+	if err != nil {
+		log.Printf("%v", err)
+		return nil
+	}
+
+	return qad
 }

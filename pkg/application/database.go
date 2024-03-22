@@ -6,7 +6,8 @@ import (
 )
 
 type NotionDatabaseController interface {
-	GetDatabase(ctx *gin.Context)
+	GetDatabaseInfo(ctx *gin.Context)
+	GetData(ctx *gin.Context)
 }
 
 type notionDatabaseController struct {
@@ -17,6 +18,10 @@ func NewDatabaseService(database domain.NotionDatabase) NotionDatabaseController
 	return &notionDatabaseController{database: database}
 }
 
-func (ndc notionDatabaseController) GetDatabase(ctx *gin.Context) {
-	ctx.JSON(200, ndc.database.GetDatabase())
+func (ndc notionDatabaseController) GetDatabaseInfo(ctx *gin.Context) {
+	ctx.JSON(200, ndc.database.GetDatabaseInfo())
+}
+
+func (ndc notionDatabaseController) GetData(ctx *gin.Context) {
+	ctx.JSON(200, ndc.database.GetData())
 }
