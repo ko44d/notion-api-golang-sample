@@ -12,7 +12,7 @@ func Init(ndc application.NotionDatabaseController) *gin.Engine {
 			"message": "Hello world",
 		})
 	})
-	r.GET("/database", ndc.GetDatabaseInfo)
-	r.GET("/database/query", ndc.GetData)
+	r.GET("/notionapi", ndc.GetDatabaseInfo)
+	r.GET("/notionapi/query", ndc.GetData)
 	return r
 }

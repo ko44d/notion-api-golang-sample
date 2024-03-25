@@ -1,4 +1,4 @@
-package database
+package notionapi
 
 type DatabaseParam struct {
 	databaseId string `json:"database_id"`

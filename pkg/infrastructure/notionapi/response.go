@@ -1,4 +1,4 @@
-package database
+package notionapi
 
 type DatabaseResponse struct {
 	Object         string        `json:"object"`

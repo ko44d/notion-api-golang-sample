@@ -2,7 +2,7 @@ package domain
 
 import (
 	"ko44d/notion-api-golang-sample/pkg/infrastructure/config"
-	"ko44d/notion-api-golang-sample/pkg/infrastructure/database"
+	"ko44d/notion-api-golang-sample/pkg/infrastructure/notionapi"
 	"log"
 )
 
@@ -12,16 +12,16 @@ type NotionDatabase interface {
 }
 
 type notionDatabase struct {
-	notionapi database.NotionAPI
+	notionapi notionapi.NotionAPI
 	config    config.Config
 }
 
-func NewNotionDatabase(notionapi database.NotionAPI, config config.Config) NotionDatabase {
+func NewNotionDatabase(notionapi notionapi.NotionAPI, config config.Config) NotionDatabase {
 	return &notionDatabase{notionapi: notionapi, config: config}
 }
 
 func (nd notionDatabase) GetDatabaseInfo() interface{} {
-	param := database.NewDatabaseParam(nd.config.NotionPageId)
+	param := notionapi.NewDatabaseParam(nd.config.NotionPageId)
 
 	getDatabase, err := nd.notionapi.RetrieveADatabase(param)
 	if err != nil {
@@ -33,7 +33,7 @@ func (nd notionDatabase) GetDatabaseInfo() interface{} {
 }
 
 func (nd notionDatabase) GetData() interface{} {
-	param := database.NewDatabaseParam(nd.config.NotionPageId)
+	param := notionapi.NewDatabaseParam(nd.config.NotionPageId)
 
 	qad, err := nd.notionapi.QueryADatabase(param)
 	if err != nil {

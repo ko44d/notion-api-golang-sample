@@ -6,7 +6,7 @@ import (
 	"ko44d/notion-api-golang-sample/pkg/application"
 	"ko44d/notion-api-golang-sample/pkg/domain"
 	"ko44d/notion-api-golang-sample/pkg/infrastructure/config"
-	"ko44d/notion-api-golang-sample/pkg/infrastructure/database"
+	"ko44d/notion-api-golang-sample/pkg/infrastructure/notionapi"
 )
 
 type DI struct {
@@ -32,6 +32,6 @@ func (di DI) NotionDatabase() domain.NotionDatabase {
 	return domain.NewNotionDatabase(di.NotionAPI(), di.Config())
 }
 
-func (di DI) NotionAPI() database.NotionAPI {
-	return database.NewNotionAPI(di.Config())
+func (di DI) NotionAPI() notionapi.NotionAPI {
+	return notionapi.NewNotionAPI(di.Config())
 }
